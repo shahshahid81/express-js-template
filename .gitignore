@@ -1,0 +1,6 @@
+.env*
+!.env.example
+.postgres-data
+dist/
+logs/
+node_modules/

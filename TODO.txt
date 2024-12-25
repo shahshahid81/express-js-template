@@ -1,0 +1,5 @@
+10. Support for Swagger
+11. Unit and Integration Testing -> CURRENT
+14. Validate ENV File
+15. Rate Limiting -> CURRENT
+    Add support for redis also -> PENDING
