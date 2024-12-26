@@ -1,7 +1,11 @@
+// [
+// 	{ id: 1, name: 'Test Name', description: 'Test Description' },
+// ]
+
 import { CreateItem } from '../validation/createItem';
 import { UpdateItem } from '../validation/updateItem';
 
-const items: {
+export const items: {
 	id: number;
 	name: string;
 	description: string;
@@ -18,6 +22,7 @@ export const createItem = ({ name, description }: CreateItem) => {
 		description,
 	};
 	items.push(newItem);
+	return newItem;
 };
 
 export const getAllItems = () => {
