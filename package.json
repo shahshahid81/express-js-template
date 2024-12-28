@@ -18,7 +18,7 @@
 		"start": "cross-env NODE_ENV=production node dist/index.js",
 		"dev": "cross-env NODE_ENV=development nodemon src/index.ts",
 		"test:unit": "jest tests/unit --passWithNoTests",
-		"test:e2e": "cross-env NODE_ENV=testing node -e \"if (process.env.NODE_ENV === \\\"testing\\\") { require(\\\"child_process\\\").execSync(\\\"jest tests/e2e --passWithNoTests\\\", { stdio: \\\"inherit\\\" }); } else { console.log(\\\"E2E tests skipped: NODE_ENV is not testing\\\"); }\"",
+		"test:e2e": "cross-env NODE_ENV=testing node -e \"if (process.env.NODE_ENV === \\\"testing\\\") { require(\\\"child_process\\\").execSync(\\\"jest tests/e2e --config tests/e2e/jest.config.js --passWithNoTests\\\", { stdio: \\\"inherit\\\" }); } else { console.log(\\\"E2E tests skipped: NODE_ENV is not testing\\\"); }\"",
 		"lint": "npx eslint .",
 		"lint:fix": "npx eslint --fix .",
 		"format": "npx prettier . --write",

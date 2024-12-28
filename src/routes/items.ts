@@ -17,13 +17,13 @@ router.post(
 	(req: Request, res: Response): void => {
 		const { name, description } = req.body;
 		const newItem = createItem({ name, description });
-		res.status(201).json(newItem);
+		res.status(201).json({ item: newItem });
 	}
 );
 
 router.get('/', (_req: Request, res: Response): void => {
 	const items = getAllItems();
-	res.status(200).json(items);
+	res.status(200).json({ items });
 });
 
 router.get('/:id', (req: Request, res: Response): void => {
@@ -35,7 +35,7 @@ router.get('/:id', (req: Request, res: Response): void => {
 		return;
 	}
 
-	res.status(200).json(item);
+	res.status(200).json({ item });
 });
 
 router.put('/:id', (req: Request, res: Response): void => {
@@ -48,7 +48,7 @@ router.put('/:id', (req: Request, res: Response): void => {
 		return;
 	}
 
-	res.status(200).json(updatedItem);
+	res.status(200).json({ item: updatedItem });
 });
 
 router.delete('/:id', (req: Request, res: Response): void => {

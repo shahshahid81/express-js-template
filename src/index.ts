@@ -27,6 +27,8 @@ app.get('/', (_req, res) => {
 	res.send('Express + TypeScript Server');
 });
 
-app.listen(port, () => {
+export const server = app.listen(port, () => {
 	console.log(`[server]: Server is running at http://localhost:${port}`);
 });
+
+export default app;

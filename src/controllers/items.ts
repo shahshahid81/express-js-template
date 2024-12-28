@@ -5,16 +5,18 @@
 import { CreateItem } from '../validation/createItem';
 import { UpdateItem } from '../validation/updateItem';
 
-export const items: {
-	id: number;
-	name: string;
-	description: string;
-}[] = [
-	{ id: 1, name: 'Item 1', description: 'First item' },
-	{ id: 2, name: 'Item 2', description: 'Second item' },
-];
+export class Items {
+	private static items = [
+		{ id: 1, name: 'Item 1', description: 'First item' },
+		{ id: 2, name: 'Item 2', description: 'Second item' },
+	];
+	static getItems() {
+		return this.items;
+	}
+}
 
 export const createItem = ({ name, description }: CreateItem) => {
+	const items = Items.getItems();
 	const id = (items?.length ?? 0) > 0 ? items[items.length - 1]!.id + 1 : 1;
 	const newItem = {
 		id,
@@ -26,14 +28,16 @@ export const createItem = ({ name, description }: CreateItem) => {
 };
 
 export const getAllItems = () => {
-	return items;
+	return Items.getItems();
 };
 
 export const getItem = (id: string) => {
+	const items = Items.getItems();
 	return items.find((i) => i.id.toString() === id);
 };
 
 export const updateItem = ({ id, name, description }: UpdateItem) => {
+	const items = Items.getItems();
 	const itemIndex = items.findIndex((i) => i.id === id);
 	if (itemIndex === -1) {
 		return null;
@@ -51,6 +55,7 @@ export const updateItem = ({ id, name, description }: UpdateItem) => {
 };
 
 export const deleteItem = (id: string) => {
+	const items = Items.getItems();
 	const itemIndex = items.findIndex((i) => i.id.toString() === id);
 
 	if (itemIndex === -1) {
