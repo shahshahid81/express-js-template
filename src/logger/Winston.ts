@@ -44,8 +44,9 @@ class Winston implements ILogger {
 		this.logger.warn(message);
 	}
 
-	error(message: string): void {
-		this.logger.error(message);
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	error(message: string, error: any): void {
+		this.logger.error(message, error);
 	}
 }
 

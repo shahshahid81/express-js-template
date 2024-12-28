@@ -15,6 +15,16 @@ services:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+  redis:
+    container_name: ${NODE_ENV}-redis
+    image: redis:6.2-alpine
+    ports:
+      - '${REDIS_PORT}:${REDIS_PORT}'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
   api:
     container_name: ${NODE_ENV}-api
     build:
@@ -24,6 +34,7 @@ services:
         - ${NODE_ENV}-api
     depends_on:
       - database
+      - redis
     ports:
       - '${PORT}:${PORT}'
     restart: unless-stopped

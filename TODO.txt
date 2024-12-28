@@ -5,5 +5,3 @@ Add support to connect to test DB for Integration Testing -> PENDING
 Support for Swagger -> PENDING
 
 Validate ENV File -> PENDING
-
-Add support for redis for Rate Limiting -> PENDING

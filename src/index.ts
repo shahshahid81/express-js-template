@@ -1,11 +1,12 @@
 import dotenv from 'dotenv';
+import dotenvExpand from 'dotenv-expand';
 import path from 'node:path';
 import bodyParser from 'body-parser';
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const envFilePath = path.resolve(__dirname, '..', `.env.${nodeEnv}`);
 
-dotenv.config({ path: envFilePath });
+dotenvExpand.expand(dotenv.config({ path: envFilePath }));
 
 import express from 'express';
 import helmet from 'helmet';
