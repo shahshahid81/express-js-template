@@ -1,6 +1,11 @@
-.env*
 !.env.example
+.env*
+.idea/
 .postgres-data
+.vscode/
+build/
 dist/
 logs/
 node_modules/
+temp/
+tmp/

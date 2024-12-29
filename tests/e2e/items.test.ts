@@ -1,8 +1,15 @@
 import request from 'supertest';
-import app, { server } from '../../src/index';
+import app, { startServer } from '../../src/index';
+import { Server } from 'http';
+
+let server: Server | undefined;
+
+beforeAll(async () => {
+	server = await startServer();
+});
 
 afterAll(() => {
-	server.close();
+	server?.close();
 });
 
 describe('CRUD items', () => {

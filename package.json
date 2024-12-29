@@ -1,13 +1,19 @@
 {
 	"dependencies": {
+		"bcrypt": "^5.1.1",
 		"body-parser": "^1.20.3",
 		"dotenv": "^16.4.7",
 		"dotenv-expand": "^12.0.1",
 		"express": "^4.21.2",
 		"express-rate-limit": "^7.5.0",
 		"helmet": "^8.0.0",
+		"luxon": "^3.5.0",
+		"pg": "^8.13.1",
+		"pluralize": "^8.0.0",
 		"rate-limit-redis": "^4.2.0",
 		"redis": "^4.7.0",
+		"reflect-metadata": "^0.2.2",
+		"typeorm": "^0.3.20",
 		"winston": "^3.17.0",
 		"zod": "^3.24.1"
 	},
@@ -19,7 +25,7 @@
 	"scripts": {
 		"build": "npx tsc",
 		"start": "cross-env NODE_ENV=production node dist/index.js",
-		"dev": "cross-env NODE_ENV=development nodemon src/index.ts",
+		"dev": "cross-env NODE_ENV=development nodemon",
 		"test:unit": "jest tests/unit --passWithNoTests",
 		"test:e2e": "cross-env NODE_ENV=testing node -e \"if (process.env.NODE_ENV === \\\"testing\\\") { require(\\\"child_process\\\").execSync(\\\"jest tests/e2e --config tests/e2e/jest.config.js --passWithNoTests\\\", { stdio: \\\"inherit\\\" }); } else { console.log(\\\"E2E tests skipped: NODE_ENV is not testing\\\"); }\"",
 		"lint": "npx eslint .",
@@ -27,17 +33,21 @@
 		"format": "npx prettier . --write",
 		"prepare": "husky",
 		"commit": "cz",
-		"docker:up": "docker compose -f docker-compose.local.yml --env-file .env.development up",
-		"docker:up:build": "docker compose -f docker-compose.local.yml --env-file .env.development up --build",
+		"docker:up": "docker compose -f docker-compose.local.yml --env-file .env.devfelopment up",
+		"docker:up:build": "docker compose -f docker-compose.local.yml --env-file .env.development build --no-cache && docker compose -f docker-compose.local.yml --env-file .env.development up --force-recreate",
 		"docker:down": "docker compose -f docker-compose.local.yml --env-file .env.development down",
-		"docker:api-shell": "docker compose -f docker-compose.local.yml --env-file .env.development exec -it api sh"
+		"docker:api-shell": "docker compose -f docker-compose.local.yml --env-file .env.development exec -it api sh",
+		"typeorm": "typeorm-ts-node-commonjs"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.4",
 		"@eslint/js": "^9.17.0",
+		"@types/bcrypt": "^5.0.2",
 		"@types/express": "^5.0.0",
 		"@types/jest": "^29.5.14",
+		"@types/luxon": "^3.4.2",
 		"@types/node": "^22.10.2",
+		"@types/pluralize": "^0.0.33",
 		"@types/supertest": "^6.0.2",
 		"concurrently": "^9.1.0",
 		"cross-env": "^7.0.3",

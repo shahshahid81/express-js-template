@@ -1,7 +1,22 @@
-Add ORM -> PENDING
-
 Add support to connect to test DB for Integration Testing -> PENDING
 
 Support for Swagger -> PENDING
 
 Validate ENV File -> PENDING
+
+TODO:
+  Add Unit Test Cases for Login, Logout and Register
+  Add Integration Test Cases for Login, Logout and Register
+  Add Types Folder for proper type handling
+  Add Proper Exception Handling
+
+Scripts:
+  docker compose -f docker-compose.local.yml --env-file .env.development up database redis
+
+  npx typeorm migration:create ./src/migrations/
+
+  npx typeorm-ts-node-commonjs migration:run --dataSource src/typeorm/data-source.ts
+
+  npx typeorm-ts-node-commonjs migration:revert --dataSource src/typeorm/data-source.ts
+
+  docker compose -f docker-compose.local.yml --env-file .env.development exec -it database psql -U postgres -d test

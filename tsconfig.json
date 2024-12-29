@@ -16,6 +16,7 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
+		"strictPropertyInitialization": false,
 		"outDir": "./dist",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
@@ -24,7 +25,9 @@
 		"allowUnreachableCode": false,
 		"allowUnusedLabels": false,
 		"noImplicitOverride": true,
-		"noUncheckedIndexedAccess": true
+		"noUncheckedIndexedAccess": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules", "dist"]

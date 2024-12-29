@@ -1,7 +1,3 @@
-// [
-// 	{ id: 1, name: 'Test Name', description: 'Test Description' },
-// ]
-
 import { CreateItem } from '../validation/createItem';
 import { UpdateItem } from '../validation/updateItem';
 
