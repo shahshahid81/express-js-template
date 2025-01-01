@@ -1,12 +1,9 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { validate } from '../middleware/validate';
 import { RegisterUser, registerUserSchema } from '../validation/registerUser';
-import { loginUser, registerUser } from '../controllers/users';
+import { loginUser, logoutUser, registerUser } from '../controllers/users';
 import { LoginUser, loginUserSchema } from '../validation/loginUser';
 import { auth } from '../middleware/auth';
-import { AppDataSource } from '../typeorm/data-source';
-import { hash } from '../utils/hash-utils';
-import { TokenList } from '../entity/TokenList';
 
 const router = express.Router();
 
@@ -52,13 +49,8 @@ router.post(
 	auth,
 	async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 		try {
-			console.log(req.token);
 			if (req.token) {
-				await AppDataSource.getRepository(TokenList)
-					.createQueryBuilder()
-					.delete()
-					.where({ token: hash(req.token) })
-					.execute();
+				await logoutUser(req.token);
 			}
 			res.status(200).json({ success: true });
 			return;

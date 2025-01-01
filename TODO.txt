@@ -1,8 +1,6 @@
 Add support to connect to test DB for Integration Testing -> PENDING
-
-Support for Swagger -> PENDING
-
 Validate ENV File -> PENDING
+Support for Swagger -> PENDING
 
 TODO:
   Add Unit Test Cases for Login, Logout and Register

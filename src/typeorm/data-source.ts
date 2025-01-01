@@ -13,7 +13,7 @@ export const AppDataSource = new DataSource({
 	password: config.DB_PASSWORD!,
 	database: config.DB_NAME!,
 	synchronize: false,
-	logging: true,
+	logging: false,
 	entities: [User, TokenList],
 	migrations: ['src/migrations/**/*.ts'],
 	migrationsTableName: 'tbl_migrations',

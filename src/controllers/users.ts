@@ -9,6 +9,7 @@ import {
 import { LoginUser } from '../validation/loginUser';
 import { RegisterUser } from '../validation/registerUser';
 import { TokenList } from '../entity/TokenList';
+import { AppDataSource } from '../typeorm/data-source';
 
 export async function registerUser(payload: RegisterUser): Promise<User> {
 	const existingUser = await User.findOneBy({ email: payload.email });
@@ -49,4 +50,12 @@ export async function loginUser(
 	});
 	await tokenList.save();
 	return { token };
+}
+
+export async function logoutUser(token: string): Promise<void> {
+	await AppDataSource.getRepository(TokenList)
+		.createQueryBuilder()
+		.delete()
+		.where({ token: hash(token) })
+		.execute();
 }

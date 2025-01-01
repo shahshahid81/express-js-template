@@ -36,7 +36,7 @@ app.get('/', (_req, res) => {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 app.use((error: any, _req: Request, res: Response, _next: NextFunction) => {
-	logger.error('Internal Server Error:', error);
+	logger.error('Internal Server Error:' + (error?.message || error || ''));
 	res.status(error.status || 500).json({
 		message: error.message || 'Internal Server Error',
 		stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
@@ -50,8 +50,12 @@ export async function startServer(): Promise<Server | undefined> {
 			console.log(`[server]: Server is running at http://localhost:${port}`);
 		});
 		return server;
-	} catch (error) {
-		logger.error('An Error Occured while starting server', error);
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (error: any) {
+		logger.error(
+			'An Error Occured while starting server: ' +
+				(error?.message || error || '')
+		);
 		return;
 	}
 }

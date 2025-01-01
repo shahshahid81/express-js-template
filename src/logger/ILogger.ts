@@ -3,6 +3,5 @@ export interface ILogger {
 	debug(message: string): void;
 	info(message: string): void;
 	warn(message: string): void;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	error(message: string, error?: any): void;
+	error(message: string): void;
 }

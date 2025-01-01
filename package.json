@@ -33,7 +33,7 @@
 		"format": "npx prettier . --write",
 		"prepare": "husky",
 		"commit": "cz",
-		"docker:up": "docker compose -f docker-compose.local.yml --env-file .env.devfelopment up",
+		"docker:up": "docker compose -f docker-compose.local.yml --env-file .env.development up",
 		"docker:up:build": "docker compose -f docker-compose.local.yml --env-file .env.development build --no-cache && docker compose -f docker-compose.local.yml --env-file .env.development up --force-recreate",
 		"docker:down": "docker compose -f docker-compose.local.yml --env-file .env.development down",
 		"docker:api-shell": "docker compose -f docker-compose.local.yml --env-file .env.development exec -it api sh",

@@ -26,8 +26,12 @@ export async function defaultRateLimiter(
 				sendCommand: (...args: string[]) => redisClient.sendCommand(args),
 			}),
 		})(req, res, next);
-	} catch (error: unknown) {
-		logger.error('Something went wrong while connecting with redis', error);
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (error: any) {
+		logger.error(
+			'Something went wrong while connecting with redis' +
+				(error?.message || error || '')
+		);
 		next();
 	}
 }
