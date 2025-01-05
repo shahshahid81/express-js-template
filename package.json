@@ -30,7 +30,7 @@
 		"test:e2e": "cross-env NODE_ENV=testing node -e \"if (process.env.NODE_ENV === \\\"testing\\\") { require(\\\"child_process\\\").execSync(\\\"jest tests/e2e --config tests/e2e/jest.config.js --passWithNoTests\\\", { stdio: \\\"inherit\\\" }); } else { console.log(\\\"E2E tests skipped: NODE_ENV is not testing\\\"); }\"",
 		"lint": "npx eslint .",
 		"lint:fix": "npx eslint --fix .",
-		"format": "npx prettier . --write",
+		"format": "npx prettier . --write --check \"!.postgres-data\"",
 		"prepare": "husky",
 		"commit": "cz",
 		"docker:up": "docker compose -f docker-compose.local.yml --env-file .env.development up",

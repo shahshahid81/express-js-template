@@ -28,6 +28,9 @@ export const validate = (schema: ZodType) => {
 			return;
 		}
 
+		// TODO: check how to handle query and params data
+		req.body = result.data;
+
 		next();
 	};
 };

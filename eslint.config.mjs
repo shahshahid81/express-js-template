@@ -16,4 +16,10 @@ export default [
 	{ languageOptions: { globals: globals.node } },
 	pluginJs.configs.recommended,
 	...tseslint.configs.recommended,
+	{
+		rules: {
+			'@typescript-eslint/explicit-function-return-type': 'error',
+		},
+	},
+	{ ignores: ['dist/**/*'] },
 ];

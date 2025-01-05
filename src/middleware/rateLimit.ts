@@ -1,5 +1,5 @@
 import rateLimit from 'express-rate-limit';
-import { RedisStore } from 'rate-limit-redis';
+import { RedisReply, RedisStore } from 'rate-limit-redis';
 import { createClient } from 'redis';
 import { logger } from '../logger';
 import { NextFunction, Request, Response } from 'express';
@@ -8,7 +8,7 @@ export async function defaultRateLimiter(
 	req: Request,
 	res: Response,
 	next: NextFunction
-) {
+): Promise<void> {
 	const redisClient = createClient({
 		url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
 	});
@@ -23,7 +23,8 @@ export async function defaultRateLimiter(
 			standardHeaders: true,
 			legacyHeaders: false,
 			store: new RedisStore({
-				sendCommand: (...args: string[]) => redisClient.sendCommand(args),
+				sendCommand: (...args: string[]): Promise<RedisReply> =>
+					redisClient.sendCommand(args),
 			}),
 		})(req, res, next);
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
